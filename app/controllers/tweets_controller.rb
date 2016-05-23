@@ -28,16 +28,31 @@ class TweetsController < ApplicationController
     end
   end
 
-  private
-  # Using a private method to encapsulate the permissible parameters is
-  # just a good pattern since you'll be able to reuse the same permit
-  # list between create and update. Also, you can specialize this method
-  # with per-user checking of permissible attributes.
-  def tweet_params
-    params.require(:tweet).permit(:message, :user_id)
+  def update
+    # @tweet = Tweet.find(params[:id]) is being called by the before_action of :set_tweet
+    respond_to do |format|
+      if @tweet.update(tweet_params)
+        format.html { redirect_to tweet_path(@tweet.id), notice: "Tweet was successfully updated!"}
+      else
+        format.html { render :edit }
+      end
+    end
   end
+
+  def destroy
+    @tweet.destroy
+    respond_to do |format|
+      format.html {redirect_to tweets_path, notice: "Tweet is gone"}
+    end
+  end
+
+  private
 
   def set_tweet
     @tweet = Tweet.find(params[:id])
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:message, :user_id)
   end
 end
