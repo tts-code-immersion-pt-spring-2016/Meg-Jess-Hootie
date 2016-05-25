@@ -24,3 +24,4 @@ class RelationshipsController < ApplicationController
      def relationship_params
        params.require(:relationship).permit(:user_id, :friend_id)
      end
+  
