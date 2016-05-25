@@ -23,7 +23,11 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'New Tweet', new_tweet_path%>
+
+<%= link_to "profiles", profiles_path %>
+<br />
+<br />
+<%= link_to 'New Tweet', new_tweet_path, class: "btn btn-danger" %>
 
 
 <%= link_to "Sign Out", destroy_user_session_path,

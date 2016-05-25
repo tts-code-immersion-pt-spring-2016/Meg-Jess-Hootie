@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+
   resources :profiles, only: [:index, :show]
 
   resources :tweets
