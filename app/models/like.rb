@@ -1,4 +1,4 @@
 class Like < ActiveRecord::Base
   belongs_to :user
-  belonds_to :tweet
+  belongs_to :tweet
 end
